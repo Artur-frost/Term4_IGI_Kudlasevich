@@ -1,0 +1,45 @@
+/* Стили для таблицы корзины */
+.cart {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart th,
+.cart td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart th {
+    background-color: #f9f9f9;
+}
+
+.cart .total td {
+    font-weight: bold;
+}
+
+/* Стили для изображения товара */
+.cart img {
+    width: 80px;
+    height: auto;
+}
+
+/* Стили для кнопок */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+}
+
+.button.light {
+    background-color: #f9f9f9;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
