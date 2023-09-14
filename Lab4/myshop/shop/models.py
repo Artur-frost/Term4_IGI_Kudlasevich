@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
@@ -17,6 +18,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
@@ -31,7 +33,10 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('name',)
-        index_together = (('id', 'slug'),)
+        # index_together = (('id', 'slug'),)
+        indexes = [
+            models.Index(fields=['id', 'slug']),
+        ]
 
     def get_absolute_url(self):
         return reverse('shop:product_detail',
@@ -39,3 +44,66 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=200,
+                             help_text='Enter article title')
+    short_argument = models.CharField(max_length=100)
+    content = models.TextField()
+    image = models.ImageField(upload_to='article')
+    date_of_creation = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('article-detail', args=[str(self.id)])
+
+    def str(self):
+        return self.title
+
+
+class Partner(models.Model):
+    partner_name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='partner')
+    link = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, db_index=True)
+
+    def get_absolute_url(self):
+        return reverse('partner-detail', args=[str(self.id)])
+
+    def str(self):
+        return self.partner_name
+
+
+class Advertisement(models.Model):
+    adv_name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='advertisement')
+    link = models.CharField(max_length=200)
+
+    def get_absolute_url(self):
+        return reverse('advertisement-detail', args=[str(self.id)])
+
+    def str(self):
+        return self.adv_name
+
+class CompanyInfo(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    video_url = models.URLField()
+    logo = models.ImageField(upload_to='company_logo')
+    history = models.TextField()
+    contacts = models.TextField()
+    certificate = models.ImageField(upload_to='certificates')
+
+class Contact(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to='contact_photos', null=True, blank=True)
+    job_title = models.CharField(max_length=100)
+    description = models.TextField()
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    website = models.URLField()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
