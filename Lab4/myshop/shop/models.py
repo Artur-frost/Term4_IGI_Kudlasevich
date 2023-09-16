@@ -107,3 +107,11 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+    date_added = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.question
