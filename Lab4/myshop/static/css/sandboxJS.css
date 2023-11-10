@@ -1,0 +1,42 @@
+table {
+    border-collapse: collapse;
+    margin: 10px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 20px; /* Увеличьте отступ для ячеек */
+    text-align: center;
+    width: 20px; /* Установите ширину */
+    height:20px; /* Установите высоту */
+}
+
+.selected {
+    background: linear-gradient(135deg, #3498db, #2980b9); /* Голубой градиент */
+    color: white; /* Белый текст */
+}
+
+.selected-even {
+    background: linear-gradient(135deg, #2ecc71, #27ae60); /* Зеленый градиент */
+    color: white; /* Белый текст */
+}
+
+
+
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#image {
+    max-width: 300px;
+    max-height: 300px;
+    transform-origin: center;
+    transition: transform 0.3s, width 0.3s, height 0.3s;
+}
