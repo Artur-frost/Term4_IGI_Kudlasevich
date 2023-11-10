@@ -36,12 +36,12 @@ def home(request):
 
     # Получите список компаний-партнеров
     partners = Partner.objects.all()
-    advertisement = Advertisement.objects.first()
+    advertisements = Advertisement.objects.all()
 
     context = {
         'latest_article': latest_article,
         'partners': partners,
-        'advertisement': advertisement,  # Добавьте рекламу в контекст
+        'advertisements': advertisements,  # Добавьте рекламу в контекст
     }
 
     return render(request, 'shop/home/home.html', context)
@@ -151,3 +151,10 @@ def add_review(request):
 
 def example_view(request):
     return render(request, 'shop/sandbox/example.html')
+
+def example_view_1(request):
+    return render(request, 'shop/sandbox/example1.html')
+
+
+
+
